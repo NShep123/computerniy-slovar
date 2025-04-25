@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Жаргонные термины</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+      background: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+    }
+    .search-box {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .letter-divider {
+      font-size: 36px;
+      font-weight: bold;
+      margin-top: 40px;
+      margin-bottom: 10px;
+      text-align: left;
+      text-transform: uppercase;
+      color: #333;
+      display: block;
+    }
+    .term {
+      margin-bottom: 15px;
+    }
+    .term-title {
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .term-desc {
+      margin-left: 10px;
+      font-size: 16px;
+    }
+    .letter-divider {
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 10px;
+      margin-top: 40px;
+    }
+    .back-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1.1em;
+      display: inline-block;
+    }
+    .back-button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+    <!-- Кнопка назад -->
+    <a class="back-button" href="index.html">← Назад на главную</a>
+  </style>
+  <script>
+    // Функция для поиска
+    function filterTerms() {
+      const input = document.getElementById("searchInput").value.toLowerCase().trim();
+      const terms = document.getElementsByClassName("term");
+      const letterDividers = document.getElementsByClassName("letter-divider");
+
+      let anyResults = false;  // Переменная для отслеживания, есть ли результаты
+
+      // Перебор всех терминами
+      for (let i = 0; i < terms.length; i++) {
+        const title = terms[i].getElementsByClassName("term-title")[0].textContent.toLowerCase();
+        const desc = terms[i].getElementsByClassName("term-desc")[0].textContent.toLowerCase();
+        const number = terms[i].getElementsByClassName("term-number")[0].textContent.toLowerCase();
+
+        // Если номер, название или описание содержит текст из поискового запроса
+        if (title.includes(input) || desc.includes(input) || number.includes(input)) {
+          terms[i].style.display = "";  // Показываем термин
+          anyResults = true;  // Есть хотя бы один результат
+        } else {
+          terms[i].style.display = "none";  // Скрываем термин
+        }
+      }
+
+      // Перебор букв (разделителей)
+      for (let i = 0; i < letterDividers.length; i++) {
+        let letter = letterDividers[i];
+        let hasVisibleTerms = false;
+
+        // Перебор всех терминов, связанных с этой буквой
+        for (let j = 0; j < terms.length; j++) {
+          const title = terms[j].getElementsByClassName("term-title")[0].textContent.toLowerCase();
+
+          // Если хотя бы один термин начинается с буквы текущего разделителя и видим по запросу
+          if (title.startsWith(letter.textContent.toLowerCase()) && terms[j].style.display !== "none") {
+            hasVisibleTerms = true;
+            break;
+          }
+        }
+
+        // Если для буквы есть видимые термины, показываем разделитель, иначе скрываем
+        letter.style.display = hasVisibleTerms ? "" : "none";
+      }
+
+      // Если нет результатов поиска, показываем все термины и буквы
+      if (!anyResults && input === "") {
+        for (let i = 0; i < terms.length; i++) {
+          terms[i].style.display = "";  // Показываем все термины
+        }
+        for (let i = 0; i < letterDividers.length; i++) {
+          letterDividers[i].style.display = "";  // Показываем все буквы
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Жаргонные термины</h1>
+  <div class="search-box">
+    <input type="text" id="searchInput" onkeyup="filterTerms()" placeholder="Поиск по терминам...">
+  </div>
+
+  <!-- Вставляем все 40 жаргонных терминов -->
+  <div class="letter-divider">А</div>
+  <div class="term">
+    <div class="term-number">1.</div>
+    <div class="term-title">Аппаратник</div>
+    <div class="term-desc">Человек, работающий с аппаратным обеспечением.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">2.</div>
+    <div class="term-title">Агрегат</div>
+    <div class="term-desc">Комплексная сборка оборудования или компонентов.</div>
+  </div>
+
+  <div class="letter-divider">Б</div>
+  <div class="term">
+    <div class="term-number">3.</div>
+    <div class="term-title">Баг</div>
+    <div class="term-desc">Ошибка в программе или системе.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">4.</div>
+    <div class="term-title">Брут</div>
+    <div class="term-desc">Процесс использования силы для взлома паролей или защиты системы.</div>
+  </div>
+
+  <div class="letter-divider">В</div>
+  <div class="term">
+    <div class="term-number">5.</div>
+    <div class="term-title">Втыкать</div>
+    <div class="term-desc">Вставлять (например, втыкать флешку в USB порт).</div>
+  </div>
+  <div class="term">
+    <div class="term-number">6.</div>
+    <div class="term-title">Взлетать</div>
+    <div class="term-desc">Запускать систему или программу (например, сервер взлетел).</div>
+  </div>
+
+  <div class="letter-divider">Г</div>
+  <div class="term">
+    <div class="term-number">7.</div>
+    <div class="term-title">Глюк</div>
+    <div class="term-desc">Неожиданное поведение системы или программы, баг.</div>
+  </div>
+
+  <div class="letter-divider">Д</div>
+  <div class="term">
+    <div class="term-number">8.</div>
+    <div class="term-title">Дедушка</div>
+    <div class="term-desc">Очень старое оборудование или устройство.</div>
+  </div>
+
+  <div class="letter-divider">З</div>
+  <div class="term">
+    <div class="term-number">9.</div>
+    <div class="term-title">Заскриптовать</div>
+    <div class="term-desc">Написать скрипт для автоматизации действий.</div>
+  </div>
+
+  <div class="letter-divider">И</div>
+  <div class="term">
+    <div class="term-number">10.</div>
+    <div class="term-title">Инфа</div>
+    <div class="term-desc">Сокращение от "информация", часто используется в разговорах о данных, новостях или важных сведениях.</div>
+  </div>
+
+  <div class="letter-divider">К</div>
+  <div class="term">
+    <div class="term-number">11.</div>
+    <div class="term-title">Конфиг</div>
+    <div class="term-desc">Конфигурация компьютера или системы, настройка оборудования.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">12.</div>
+    <div class="term-title">Коробка</div>
+    <div class="term-desc">Корпус компьютера или другого устройства.</div>
+  </div>
+
+  <div class="letter-divider">Л</div>
+  <div class="term">
+    <div class="term-number">13.</div>
+    <div class="term-title">Лагать</div>
+    <div class="term-desc">Задержки или тормоза в работе программы или игры.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">14.</div>
+    <div class="term-title">Линукс</div>
+    <div class="term-desc">Операционная система, известная своей стабильностью и открытым исходным кодом.</div>
+  </div>
+
+  <div class="letter-divider">М</div>
+  <div class="term">
+    <div class="term-number">15.</div>
+    <div class="term-title">Мусор</div>
+    <div class="term-desc">Ненужные файлы или данные на компьютере, засоряющие систему.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">16.</div>
+    <div class="term-title">Машинить</div>
+    <div class="term-desc"> Заниматься интенсивной работой с компьютером или системой, часто в контексте тестирования или настройки.</div>
+  </div>
+
+  <div class="letter-divider">Н</div>
+  <div class="term">
+    <div class="term-number">17.</div>
+    <div class="term-title">Наладить</div>
+    <div class="term-desc">Настроить систему или оборудование для нормальной работы.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">18.</div>
+    <div class="term-title">Нахлобучить</div>
+    <div class="term-desc">Наложить дополнительные компоненты или устройства на основное оборудование.</div>
+  </div>
+
+  <div class="letter-divider">О</div>
+  <div class="term">
+    <div class="term-number">19.</div>
+    <div class="term-title">Ошибки в логах</div>
+    <div class="term-desc">Записи о сбоях или ошибках, возникающих при работе системы.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">20.</div>
+    <div class="term-title">Офлайн</div>
+    <div class="term-desc">Состояние устройства или системы, когда оно не подключено к сети.</div>
+  </div>
+
+  <div class="letter-divider">П</div>
+  <div class="term">
+    <div class="term-number">21.</div>
+    <div class="term-title">Поток</div>
+    <div class="term-desc">Процесс передачи данных или вычислений в системе.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">22.</div>
+    <div class="term-title">Пятак</div>
+    <div class="term-desc">Оборудование или устройство, часто упоминаемое с ироничной ноткой.</div>
+  </div>
+
+  <div class="letter-divider">Р</div>
+  <div class="term">
+    <div class="term-number">23.</div>
+    <div class="term-title">Ракета</div>
+    <div class="term-desc">Очень быстрый процесс или система (например, сервер с высокой производительностью).</div>
+  </div>
+  <div class="term">
+    <div class="term-number">24.</div>
+    <div class="term-title">Ревизия</div>
+    <div class="term-desc">Проверка состояния системы или компонентов.</div>
+  </div>
+
+  <div class="letter-divider">С</div>
+  <div class="term">
+    <div class="term-number">25.</div>
+    <div class="term-title">Системник</div>
+    <div class="term-desc">Корпус с компьютером, часто используется как синоним ПК.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">26.</div>
+    <div class="term-title">Скинуть</div>
+    <div class="term-desc">Отправить файл или данные другому пользователю.</div>
+  </div>
+
+  <div class="letter-divider">Т</div>
+  <div class="term">
+    <div class="term-number">27.</div>
+    <div class="term-title">Тормозить</div>
+    <div class="term-desc">Замедление работы системы или программы, часто из-за перегрузки или недостаточной мощности.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">28.</div>
+    <div class="term-title">Танковать</div>
+    <div class="term-desc">Активно работать с устройством или системой.</div>
+  </div>
+
+  <div class="letter-divider">У</div>
+  <div class="term">
+    <div class="term-number">29.</div>
+    <div class="term-title">Ушатать</div>
+    <div class="term-desc">Разрушить или сильно повредить систему или оборудование.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">30.</div>
+    <div class="term-title">Упрямиться</div>
+    <div class="term-desc">Не поддаваться настройкам или изменениям системы.</div>
+  </div>
+
+  <div class="letter-divider">Ф</div>
+  <div class="term">
+    <div class="term-number">31.</div>
+    <div class="term-title">Флешка</div>
+    <div class="term-desc">Маленькое переносное устройство для хранения данных.</div>
+  </div>
+
+  <div class="letter-divider">Х</div>
+  <div class="term">
+    <div class="term-number">32.</div>
+    <div class="term-title">Хард</div>
+    <div class="term-desc">Жесткий диск или его сокращение.</div>
+  </div>
+
+  <div class="letter-divider">Ц</div>
+  <div class="term">
+    <div class="term-number">33.</div>
+    <div class="term-title">Цифровка</div>
+    <div class="term-desc">Процесс перевода информации в цифровой формат.</div>
+  </div>
+
+  <div class="letter-divider">Ч</div>
+  <div class="term">
+    <div class="term-number">34.</div>
+    <div class="term-title">Чистить</div>
+    <div class="term-desc">Удалять ненужные файлы или данные с устройства, очищать систему от мусора.</div>
+  </div>
+
+  <div class="letter-divider">Ш</div>
+  <div class="term">
+    <div class="term-number">35.</div>
+    <div class="term-title">Шарить</div>
+    <div class="term-desc">Делиться (от англ. Share) информацией, файлами или ссылками.</div>
+  </div>
+
+  <div class="letter-divider">Э</div>
+  <div class="term">
+    <div class="term-number">36.</div>
+    <div class="term-title">Эксплоитить</div>
+    <div class="term-desc"> Использовать уязвимость в системе или программе для получения несанкционированного доступа или выполнения вредоносных действий.</div>
+  </div>
+
+  <div class="letter-divider">Ю</div>
+  <div class="term">
+    <div class="term-number">37.</div>
+    <div class="term-title">Юзать</div>
+    <div class="term-desc">Использовать, применить, чаще используется в неформальной обстановке.</div>
+  </div>
+
+  <div class="letter-divider">Я</div>
+  <div class="term">
+    <div class="term-number">38.</div>
+    <div class="term-title">Яма</div>
+    <div class="term-desc">Место, где проблемы с техникой или сетью, часто в контексте сбоев или отказов.</div>
+  <div class="term">
+  <div class="term-number">39.</div>
+  <div class="term-title">Ядерный</div>
+  <div class="term-desc">Используется для обозначения чего-то очень мощного или ресурсоемкого, например, "Ядерная настройка" или "Ядерный ПК" (мощный компьютер).</div>
+</div>
+
+<div class="term">
+  <div class="term-number">40.</div>
+  <div class="term-title">Ярлыкать</div>
+  <div class="term-desc">Создавать ярлыки для программ или файлов на рабочем столе, часто используется в контексте организации рабочего пространства.</div>
+</div>
+
+</body>
+</html>

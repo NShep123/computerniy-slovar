@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Профессиональные термины</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+      background: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+    }
+    .search-box {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .letter-divider {
+      font-size: 36px;
+      font-weight: bold;
+      margin-top: 40px;
+      margin-bottom: 10px;
+      text-align: left;
+      text-transform: uppercase;
+      color: #333;
+      display: block;
+    }
+    .term {
+      margin-bottom: 15px;
+    }
+    .term-title {
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .term-desc {
+      margin-left: 10px;
+      font-size: 16px;
+    }
+    .letter-divider {
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 10px;
+      margin-top: 40px;
+    }
+    .back-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1.1em;
+      display: inline-block;
+    }
+    .back-button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+    <!-- Кнопка назад -->
+    <a class="back-button" href="index.html">← Назад на главную</a>
+
+    </div>
+  <script>
+    // Функция для поиска
+    function filterTerms() {
+      const input = document.getElementById("searchInput").value.toLowerCase().trim();
+      const terms = document.getElementsByClassName("term");
+      const letterDividers = document.getElementsByClassName("letter-divider");
+
+      let anyResults = false;  // Переменная для отслеживания, есть ли результаты
+
+      // Перебор всех терминами
+      for (let i = 0; i < terms.length; i++) {
+        const title = terms[i].getElementsByClassName("term-title")[0].textContent.toLowerCase();
+        const desc = terms[i].getElementsByClassName("term-desc")[0].textContent.toLowerCase();
+        const number = terms[i].getElementsByClassName("term-number")[0].textContent.toLowerCase();
+
+        // Если номер, название или описание содержит текст из поискового запроса
+        if (title.includes(input) || desc.includes(input) || number.includes(input)) {
+          terms[i].style.display = "";  // Показываем термин
+          anyResults = true;  // Есть хотя бы один результат
+        } else {
+          terms[i].style.display = "none";  // Скрываем термин
+        }
+      }
+
+      // Перебор букв (разделителей)
+      for (let i = 0; i < letterDividers.length; i++) {
+        let letter = letterDividers[i];
+        let hasVisibleTerms = false;
+
+        // Перебор всех терминов, связанных с этой буквой
+        for (let j = 0; j < terms.length; j++) {
+          const title = terms[j].getElementsByClassName("term-title")[0].textContent.toLowerCase();
+
+          // Если хотя бы один термин начинается с буквы текущего разделителя и видим по запросу
+          if (title.startsWith(letter.textContent.toLowerCase()) && terms[j].style.display !== "none") {
+            hasVisibleTerms = true;
+            break;
+          }
+        }
+
+        // Если для буквы есть видимые термины, показываем разделитель, иначе скрываем
+        letter.style.display = hasVisibleTerms ? "" : "none";
+      }
+
+      // Если нет результатов поиска, показываем все термины и буквы
+      if (!anyResults && input === "") {
+        for (let i = 0; i < terms.length; i++) {
+          terms[i].style.display = "";  // Показываем все термины
+        }
+        for (let i = 0; i < letterDividers.length; i++) {
+          letterDividers[i].style.display = "";  // Показываем все буквы
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Профессиональные термины</h1>
+  <div class="search-box">
+    <input type="text" id="searchInput" onkeyup="filterTerms()" placeholder="Поиск по терминам...">
+  </div>
+
+  <div class="letter-divider">А</div>
+  <div class="term">
+    <div class="term-number">1.</div>
+    <div class="term-title">Алгоритм</div>
+    <div class="term-desc">Последовательность действий, направленных на решение задачи.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">2.</div>
+    <div class="term-title">Аппаратный уровень</div>
+    <div class="term-desc">Уровень, связанный с физическими компонентами компьютерной системы.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">3.</div>
+    <div class="term-title">Ассемблер</div>
+    <div class="term-desc">Язык программирования низкого уровня, предназначенный для работы с аппаратным обеспечением.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">4.</div>
+    <div class="term-title">Автономная система</div>
+    <div class="term-desc">Система, работающая независимо от других, с минимальными требованиями к взаимодействию с внешними системами.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">5.</div>
+    <div class="term-title">Антивирус</div>
+    <div class="term-desc">Программное обеспечение, предназначенное для обнаружения и удаления вирусов с компьютера.</div>
+  </div>
+
+  <div class="letter-divider">Б</div>
+  <div class="term">
+    <div class="term-number">6.</div>
+    <div class="term-title">Бит</div>
+    <div class="term-desc">Минимальная единица измерения информации в компьютере.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">7.</div>
+    <div class="term-title">Блок питания</div>
+    <div class="term-desc">Устройство, обеспечивающее питание компонентов компьютера.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">8.</div>
+    <div class="term-title">Брандмауэр</div>
+    <div class="term-desc">Система безопасности, контролирующая сетевой трафик.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">9.</div>
+    <div class="term-title">Блок управления</div>
+    <div class="term-desc">Часть процессора, управляющая выполнением команд программы.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">10.</div>
+    <div class="term-title">Базовый уровень</div>
+    <div class="term-desc">Минимальная конфигурация системы или оборудования, необходимая для функционирования.</div>
+  </div>
+
+  <div class="letter-divider">В</div>
+  <div class="term">
+    <div class="term-number">11.</div>
+    <div class="term-title">Видеокарта</div>
+    <div class="term-desc">Устройство, обрабатывающее и выводящее изображение на экран.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">12.</div>
+    <div class="term-title">Виртуализация</div>
+    <div class="term-desc">Создание виртуальной версии аппаратных или программных ресурсов.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">13.</div>
+    <div class="term-title">Виртуальная память</div>
+    <div class="term-desc">Метод управления памятью, расширяющий доступное пространство.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">14.</div>
+    <div class="term-title">Внешняя память</div>
+    <div class="term-desc">Механизм хранения данных вне процессора, например, жесткие диски или SSD.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">15.</div>
+    <div class="term-title">Веб-сервер</div>
+    <div class="term-desc">Система, предназначенная для обработки запросов от пользователей и предоставления веб-страниц.</div>
+  </div>
+
+  <div class="letter-divider">Г</div>
+  <div class="term">
+    <div class="term-number">16.</div>
+    <div class="term-title">Гипервизор</div>
+    <div class="term-desc">Программа для запуска и управления виртуальными машинами.</div>
+  </div>
+
+  <div class="letter-divider">Д</div>
+  <div class="term">
+    <div class="term-number">17.</div>
+    <div class="term-title">Драйвер</div>
+    <div class="term-desc">Программа, обеспечивающая взаимодействие между ОС и устройствами.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">18.</div>
+    <div class="term-title">Жесткий диск</div>
+    <div class="term-desc">Устройство для долговременного хранения данных.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">19.</div>
+    <div class="term-title">Загрузчик</div>
+    <div class="term-desc">Программа, предназначенная для загрузки операционной системы в память компьютера.</div>
+  </div>
+
+  <div class="letter-divider">И</div>
+  <div class="term">
+    <div class="term-number">20.</div>
+    <div class="term-title">Интерфейс</div>
+    <div class="term-desc">Средство взаимодействия пользователя с компьютером или программой.</div>
+  </div>
+
+  <div class="letter-divider">К</div>
+  <div class="term">
+    <div class="term-number">21.</div>
+    <div class="term-title">Кэш</div>
+    <div class="term-desc">Быстрая память, используемая для хранения данных, к которым часто обращаются.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">22.</div>
+    <div class="term-title">Кодирование</div>
+    <div class="term-desc">Процесс преобразования информации в форму, удобную для хранения или передачи.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">23.</div>
+    <div class="term-title">Конфиденциальность</div>
+    <div class="term-desc">Состояние информации, когда доступ к ней ограничен определённым кругом лиц.</div>
+  </div>
+
+  <div class="letter-divider">Л</div>
+  <div class="term">
+    <div class="term-number">24.</div>
+    <div class="term-title">Логика</div>
+    <div class="term-desc">Наука, занимающаяся исследованиями законов правильного мышления.</div>
+  </div>
+
+  <div class="letter-divider">М</div>
+  <div class="term">
+    <div class="term-number">25.</div>
+    <div class="term-title">Модем</div>
+    <div class="term-desc">Устройство для преобразования цифровых сигналов в аналоговые и наоборот, используемое для подключения к интернету.</div>
+  </div>
+
+  <div class="letter-divider">Н</div>
+  <div class="term">
+    <div class="term-number">26.</div>
+    <div class="term-title">Набор команд</div>
+    <div class="term-desc">Множество команд, поддерживаемых процессором компьютера.</div>
+  </div>
+
+  <div class="letter-divider">О</div>
+  <div class="term">
+    <div class="term-number">27.</div>
+    <div class="term-title">Операционная система</div>
+    <div class="term-desc">Программное обеспечение, управляющее компьютером и предоставляющее интерфейс для работы с пользователем.</div>
+  </div>
+
+  <div class="letter-divider">П</div>
+  <div class="term">
+    <div class="term-number">28.</div>
+    <div class="term-title">Программирование</div>
+    <div class="term-desc">Процесс написания программного обеспечения для выполнения определённых задач.</div>
+  </div>
+
+  <div class="letter-divider">Р</div>
+  <div class="term">
+    <div class="term-number">29.</div>
+    <div class="term-title">Процессор</div>
+    <div class="term-desc">Основной элемент компьютера, выполняющий вычисления и управление процессами.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">30.</div>
+    <div class="term-title">Ресурсы</div>
+    <div class="term-desc">Материальные или виртуальные объекты, необходимые для работы системы.</div>
+  </div>
+
+  <div class="letter-divider">С</div>
+  <div class="term">
+    <div class="term-number">31.</div>
+    <div class="term-title">Системный блок</div>
+    <div class="term-desc">Корпус, в котором размещены все основные компоненты компьютера.</div>
+  </div>
+
+  <div class="letter-divider">Т</div>
+  <div class="term">
+    <div class="term-number">32.</div>
+    <div class="term-title">Технология</div>
+    <div class="term-desc">Совокупность методов и процессов для создания устройств или систем.</div>
+  </div>
+  <div class="term">
+    <div class="term-number">33.</div>
+    <div class="term-title">Таблица маршрутизации</div>
+    <div class="term-desc">Структура данных в сетевом оборудовании, определяющая маршруты для передачи данных.</div>
+  </div>
+
+  <div class="letter-divider">Ф</div>
+  <div class="term">
+    <div class="term-number">34.</div>
+    <div class="term-title">Файл</div>
+    <div class="term-desc">Единица хранения данных на диске, содержащая информацию.</div>
+  </div>
+
+  <div class="letter-divider">Х</div>
+  <div class="term">
+    <div class="term-number">35.</div>
+    <div class="term-title">Хост</div>
+    <div class="term-desc">Компьютер или сервер, предоставляющий услуги или ресурсы в сети.</div>
+  </div>
+
+  <div class="letter-divider">Ц</div>
+  <div class="term">
+    <div class="term-number">36.</div>
+    <div class="term-title">Цикл</div>
+    <div class="term-desc">Процесс или последовательность операций, которая повторяется многократно.</div>
+  </div>
+
+  <div class="letter-divider">Ш</div>
+  <div class="term">
+    <div class="term-number">37.</div>
+    <div class="term-title">Шина</div>
+    <div class="term-desc">Система передачи данных между компонентами компьютера.</div>
+  </div>
+
+  <div class="letter-divider">Э</div>
+  <div class="term">
+    <div class="term-number">38.</div>
+    <div class="term-title">Эмулятор</div>
+    <div class="term-desc">Программа, имитирующая работу другого устройства или системы.</div>
+  </div>
+
+  <div class="letter-divider">Ю</div>
+  <div class="term">
+    <div class="term-number">39.</div>
+    <div class="term-title">Юнит</div>
+    <div class="term-desc">Обособленный элемент системы или устройства, имеющий отдельную функциональность.</div>
+  </div>
+
+  <div class="letter-divider">Я</div>
+  <div class="term">
+    <div class="term-number">40.</div>
+    <div class="term-title">Ядро</div>
+    <div class="term-desc">Основная часть операционной системы, управляющая ресурсами компьютера.</div>
+  </div>
+</body>
+</html>
